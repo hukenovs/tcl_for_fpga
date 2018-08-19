@@ -3,7 +3,7 @@ Useful TCL scripts for FPGA projects on Vivado (Xilinx).
 
 > Break free from the daily routine!  
 
-License: GNU GPL 3.0.
+License: MIT
 
 ### Main information
 
