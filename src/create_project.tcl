@@ -1,24 +1,49 @@
-# ---------------------------------------------------------------- 
+# ----------------------------------------------------------------------------
 # --
 # -- Title    : test_vivado
 # -- Author   : Alexander Kapitanov
-# -- Company  : Insys
 # -- E-mail   : kapitanov@insys.ru
-# --		   	
-# ---------------------------------------------------------------- 
+# --            
+# ----------------------------------------------------------------------------
+# -- 
 # -- Description :
 # --
 # -- 1. Используется для создания проектов с помощью скрипта
-# -- 2.	Расположение скрипта в проекте - ./src/tcl/
+# -- 2. Расположение скрипта в проекте - ./src/tcl/
 # -- 3. Для создания проекта надо задать всего три переменных
-# -- 	PartDev - тип кристалла ПЛИС	
-# -- 	PrjDir - рабочий каталог проекта (БЕЗ ИМЕНИ ПРОЕКТА)
-# -- 	TopName - имя названия проекта и файла верхнего уровня
+# --    PartDev - тип кристалла ПЛИС
+# --    PrjDir - рабочий каталог проекта (БЕЗ ИМЕНИ ПРОЕКТА)
+# --    TopName - имя названия проекта и файла верхнего уровня
 # -- 4. Можно расширить использование скрипта до стадий Synthesis
-# --	и Implement. См. Stage 10-11.	   	
-# ---------------------------------------------------------------- 
+# --    и Implement. См. Stage 10-11.
+# --
+# ----------------------------------------------------------------------------
+#
+# MIT License
+# 
+# Copyright (c) 2016 Alexander Kapitanov
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in 
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# ----------------------------------------------------------------------------
 # Useful Procedures and Functions are here
-# ---------------------------------------------------------------- 
+# ----------------------------------------------------------------------------
 
 # findFiles can find files in subdirs and add it into a list
 proc findFiles { basedir pattern } {
@@ -27,29 +52,29 @@ proc findFiles { basedir pattern } {
     # native format for the platform and contains a final directory seperator
     set basedir [string trimright [file join [file normalize $basedir] { }]]
     set fileList {}
-	array set myArray {}
-	
+    array set myArray {}
+    
     # Look in the current directory for matching files, -type {f r}
     # means ony readable normal files are looked at, -nocomplain stops
     # an error being thrown if the returned list is empty
 
     foreach fileName [glob -nocomplain -type {f r} -path $basedir $pattern] {
         lappend fileList $fileName
-    }	
-	
+    }
+    
     # Now look for any sub direcories in the current directory
     foreach dirName [glob -nocomplain -type {d  r} -path $basedir *] {
         # Recusively call the routine on the sub directory and append any
         # new files to the results
-		# put $dirName
-	    set subDirList [findFiles $dirName $pattern]
+        # put $dirName
+        set subDirList [findFiles $dirName $pattern]
         if { [llength $subDirList] > 0 } {
             foreach subDirFile $subDirList {
-				lappend fileList $subDirFile
+                lappend fileList $subDirFile
             }
         }
     }
-	return $fileList
+    return $fileList
 }
 # ---------------------------------------------------------------- 
 
@@ -75,7 +100,7 @@ cd $PrjDir/$TopName
 pwd
 
 if {[file exists $VivNm] == 1} { 
-	file delete -force $VivNm 
+    file delete -force $VivNm 
 }
 file mkdir $VivNm
 cd $VivDir
@@ -103,11 +128,11 @@ lappend PrjAll $DirIps $DirAdm $SrcDir/core_v2_ise $SrcDir/core_v4_ise $SrcDir/c
 
 set SrcSim {}
 for {set i 0} {$i < [llength $PrjAll]} {incr i} {
-	set SrcXXX [findFiles [lindex $PrjAll $i] "*.vhd"]
-	put $SrcXXX
-	foreach SrcAdd $SrcXXX {
-		lappend SrcSim $SrcAdd
-	}
+    set SrcXXX [findFiles [lindex $PrjAll $i] "*.vhd"]
+    put $SrcXXX
+    foreach SrcAdd $SrcXXX {
+        lappend SrcSim $SrcAdd
+    }
 }
 
 # Stage 7: Create project and add source files
@@ -129,12 +154,12 @@ add_files -fileset constrs_1 -norecurse $SrcXDC
 # Stage 8: Set properties and update compile order
 set_property top $TopName [current_fileset]
 for {set i 0} {$i < [llength $SrcSim]} {incr i} {
-	set_property used_in_synthesis false [get_files [lindex $SrcSim $i]]
+    set_property used_in_synthesis false [get_files [lindex $SrcSim $i]]
 }
 
 set NgcGlb [findFiles $DirIps "*.ngc"]
 for {set i 0} {$i < [llength $NgcGlb]} {incr i} {
-	set_property IS_GLOBAL_INCLUDE 1 [get_files [lindex $NgcGlb $i]]
+    set_property IS_GLOBAL_INCLUDE 1 [get_files [lindex $NgcGlb $i]]
 }
 set_property IS_GLOBAL_INCLUDE 1 [get_files $SrcPCI]
 
@@ -142,13 +167,13 @@ set_property IS_GLOBAL_INCLUDE 1 [get_files $SrcPCI]
 report_ip_status -name ip_status 
 set IpCores [get_ips]
 for {set i 0} {$i < [llength $IpCores]} {incr i} {
-	set IpSingle [lindex $IpCores $i]
-	
-	set locked [get_property IS_LOCKED $IpSingle]
-	set upgrade [get_property UPGRADE_VERSIONS $IpSingle]
-	if {$upgrade != "" && $locked} {
-		upgrade_ip $IpSingle
-	}
+    set IpSingle [lindex $IpCores $i]
+    
+    set locked [get_property IS_LOCKED $IpSingle]
+    set upgrade [get_property UPGRADE_VERSIONS $IpSingle]
+    if {$upgrade != "" && $locked} {
+        upgrade_ip $IpSingle
+    }
 }
 report_ip_status -name ip_status
 
