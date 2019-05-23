@@ -1,0 +1,1 @@
+set_param general.maxThreads 12
