@@ -12,10 +12,11 @@ License: MIT
 | -- | -- |
 | **Author**        | Alexander Kapitanov   |
 | **Contact**       | sallador@bk.ru        |
-| **Project lang**  | VHDL                  |
+| **Project lang**  | TCL                   |
 | **Vendor**        | Xilinx                |
 | **Release Date**  | 10 May 2016           |
-| **Version**       | 1.0                   |
+| **Update  Date**  | 23 May 2019           |
+| **Version**       | 1.1                   |
 
 
 1. **create_project.tcl** - Create Xilinx Vivado project, find some files and add it into the project. Run synthesis, implementation.
