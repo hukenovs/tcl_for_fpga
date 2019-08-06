@@ -1,9 +1,9 @@
 # ----------------------------------------------------------------------------
 # --
-# -- Title    : test_vivado
+# -- Title    : Create Project
 # -- Author   : Alexander Kapitanov
-# -- E-mail   : kapitanov@insys.ru
-# --            
+# -- E-mail   : sallador@bk.ru
+# --
 # ----------------------------------------------------------------------------
 # -- 
 # -- Description :
