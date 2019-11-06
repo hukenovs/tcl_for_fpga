@@ -1,4 +1,4 @@
-# TCL Scripts for FPA
+# TCL Scripts for FPGA
 Useful TCL scripts for FPGA projects based on Vivado and Vivado HLS (Xilinx).
 
 > Break free from the daily routine!  
