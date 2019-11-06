@@ -1,5 +1,5 @@
-# tcl_for_fpga
-Useful TCL scripts for FPGA projects on Vivado (Xilinx).
+# TCL Scripts for FPA
+Useful TCL scripts for FPGA projects based on Vivado and Vivado HLS (Xilinx).
 
 > Break free from the daily routine!  
 
@@ -15,7 +15,7 @@ License: MIT
 | **Project lang**  | TCL                   |
 | **Vendor**        | Xilinx                |
 | **Release Date**  | 10 May 2016           |
-| **Update  Date**  | 23 May 2019           |
+| **Update  Date**  | 06 Nov 2019           |
 | **Version**       | 1.1                   |
 
 
@@ -25,3 +25,4 @@ License: MIT
 4. **vivado_ip_upgrade.tcl** - Similar p/2. Find vivado IP Cores, check for update, update them and run synth for IP cores. Also disable old XCO files (from xilinx ISE format) for AO "Insys" projects.
 5. **create_fft_ips.tcl** - Useful script for fast creating FFT cores in Vivado (GUI or bash mode).
 6. **create_mcs.tcl** - Auto-create .msc from .bit file.
+7. **modify_top_info.tcl** - Pre-synthesis modification for top level file. Calculate current Date & Time, check SVN Revision & Modification and find Build (FPGA implementation counter). Read & write this parameters into the top level file (VHDL or Verilog source).
