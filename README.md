@@ -8,15 +8,15 @@ License: MIT
 ### Main information
 
 
-| **Title**         | TCL scripts for VIVADO|
+| **Title**         | TCL scripts for VIVADO |
 | -- | -- |
-| **Author**        | Alexander Kapitanov   |
-| **Contact**       | sallador@bk.ru        |
-| **Project lang**  | TCL                   |
-| **Vendor**        | Xilinx                |
-| **Release Date**  | 10 May 2016           |
-| **Update  Date**  | 06 Nov 2019           |
-| **Version**       | 1.1                   |
+| **Author**        | Alexander Kapitanov    |
+| **Contact**       | <hidden>               |
+| **Project lang**  | TCL                    |
+| **Vendor**        | Xilinx                 |
+| **Release Date**  | 10 May 2016            |
+| **Update  Date**  | 06 Nov 2019            |
+| **Version**       | 1.1                    |
 
 
 1. **create_project.tcl** - Create Xilinx Vivado project, find some files and add it into the project. Run synthesis, implementation.
