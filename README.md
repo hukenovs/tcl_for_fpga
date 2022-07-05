@@ -7,17 +7,14 @@ License: MIT
 
 ### Main information
 
-
-| **Title**         | TCL scripts for VIVADO |
+| **Title**         | TCL scripts for Vivado |
 | -- | -- |
-| **Author**        | Alexander Kapitanov    |
-| **Contact**       | <hidden>               |
-| **Project lang**  | TCL                    |
+| **Author**        | [Alexander Kapitanov](https://www.linkedin.com/in/hukenovs) |
+| **Language**      | TCL                    |
 | **Vendor**        | Xilinx                 |
+| **Project**       | [Habr](https://habr.com/ru/post/308962/) |
 | **Release Date**  | 10 May 2016            |
 | **Update  Date**  | 06 Nov 2019            |
-| **Version**       | 1.1                    |
-
 
 1. **create_project.tcl** - Create Xilinx Vivado project, find some files and add it into the project. Run synthesis, implementation.
 2. **upgrade_vivado_ips.tcl** - Find vivado IP Cores, check for update, update them and run synth for IP cores.
